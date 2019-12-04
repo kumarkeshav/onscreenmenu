@@ -15,4 +15,12 @@ def hello():
 def display():
     return render_template("display.html")
 
+@app.route("/configure", methods=["GET"])
+def configure():
+    render_template("configure.html")
+    
+@app.route("/save_configure", methods=["POST"])
+def configure():
+    render_template("display.html")
+
 app.run(host = '0.0.0.0', port = '5000', debug = 'True')
