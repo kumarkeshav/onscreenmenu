@@ -1,14 +1,18 @@
 from flask import Flask
+import csv #lightweight database
+
 app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
+
+#Menu to be displayed
+menu = []
 
 @app.route("/")
 def hello():
     return "Hello World v2!"
     #return render_template("index.html")
 
-@app.route("/menu")
-def menu_display():
-    #return "Hello World v2!"
-    return render_template("menu.html")
+@app.route("/display")
+def display():
+    return render_template("display.html")
 
 app.run(host = '0.0.0.0', port = '5000', debug = 'True')
