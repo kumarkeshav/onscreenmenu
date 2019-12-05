@@ -1,7 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
 
 @app.route("/")
-def hello():
+def home():
     #return "Hello World!"
-    return render_template("index.html")
+    """Landing Page"""
+    return render_template('/index.html', title = "Lame Site")
+
+app.run(host='0.0.0.0', port=80, debug=True)
