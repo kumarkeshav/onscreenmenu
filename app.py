@@ -11,11 +11,16 @@ def hello():
 
 @app.route("/display")
 def display():
-    return render_template("display.html")
+    file = open("menu.csv", "r")
+    reader = csv.reader(file)
+    menu = list(reader)
+    file.close()
+    return render_template("display.html", menu=menu)
 
 @app.route("/configure", methods=["GET"])
 def configure():
-    render_template("configure.html")
+    return "Hello World v3!"
+    #render_template("configure.html")
     
 @app.route("/save_config", methods=["POST"])
 def save_config():
