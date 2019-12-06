@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
+import csv
 
 #Menu to be displayed
 menu = []
