@@ -17,8 +17,8 @@ def display():
 def configure():
     render_template("configure.html")
     
-@app.route("/save_configure", methods=["POST"])
-def configure():
+@app.route("/save_config", methods=["POST"])
+def sabe_config():
     render_template("display.html")
 
 app.run(host = '0.0.0.0', port = '5000', debug = 'True')
