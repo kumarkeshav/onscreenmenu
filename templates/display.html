@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <ul>
+        {% for menu in menu %}
+            <li>{{ menu }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
