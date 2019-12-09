@@ -8,9 +8,20 @@
         Live Menu: {{ meal }}
     </h2>
     
-    <ul>
-        {% for menu in menu %}
-            <li>{{ menu }}</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <tr>
+            <th>Items</th>
+            <th>Price (INR)</th>
+        </tr>
+        
+            {% for menu in menu %}
+                <tr>
+                    <td>{{ menu[0] }}</td>
+                    <td>{{ menu[1] }}</td>
+                </tr>
+                
+            {% endfor %}
+        
+    </table>
+    
 {% endblock %}
