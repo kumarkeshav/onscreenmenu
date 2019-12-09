@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <head>
-        {{ meal }}
-    </head>
+    <h1>
+        Hello, Everyone!
+    </h1>
+    <h2>
+        Live Menu: {{ meal }}
+    </h2>
     
     <ul>
         {% for menu in menu %}
