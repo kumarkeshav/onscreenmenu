@@ -1,46 +1,46 @@
-Breakfast,900
-Poha,20
-Samosa,15
-Kachori,15
-Tea,10
-Coffee,15
-Nimbu Pani,10
-Water Bottle,20
-Coke (200 ml),20
-Lunch,1230
-Mini Combo Veg,80
-Mini Combo Non Veg,90
-Full Thali Veg,110
-Full Thali Non Veg,120
-Curry of the Day Veg,120
-Curry Of the Day Non Veg,150
-Tandoori Roti (w/Butter),20
-Tawa Roti,20
-Tea,10
-Coffee,15
-Nimbu Pani,10
-Water Bottle,20
-Coke (200 ml),20
-Brunch,1530
-Samosa,15
-Kachori,15
-Chicken Tikka Hot Dog,70
-Tea,10
-Coffee,15
-Nimbu Pani,10
-Water Bottle,20
-Coke (200 ml),20
-Dinner,1930
-Mini Combo Veg,80
-Mini Combo Non Veg,90
-Full Thali Veg,110
-Full Thali Non Veg,120
-Curry of the Day Veg,120
-Curry Of the Day Non Veg,150
-Tandoori Roti (w/Butter),20
-Tawa Roti,10
-Tea,10
-Coffee,15
-Nimbu Pani,10
-Water Bottle,20
-Coke (200 ml),20
+Breakfast,900,
+Poha,20,Indori style poha
+Samosa,15,Punjabi samosa server with chutney
+Kachori,15,"Rajasthani style dal kachori served with dahi, chutney, etc, etc, etc"
+Tea,10,
+Coffee,15,
+Nimbu Pani,10,
+Water Bottle,20,
+Coke (200 ml),20,
+Lunch,1230,
+Mini Combo Veg,80,
+Mini Combo Non Veg,90,
+Full Thali Veg,110,
+Full Thali Non Veg,120,
+Curry of the Day Veg,120,
+Curry Of the Day Non Veg,150,
+Tandoori Roti (w/Butter),20,
+Tawa Roti,20,
+Tea,10,
+Coffee,15,
+Nimbu Pani,10,
+Water Bottle,20,
+Coke (200 ml),20,
+Brunch,1530,
+Samosa,15,
+Kachori,15,
+Chicken Tikka Hot Dog,70,
+Tea,10,
+Coffee,15,
+Nimbu Pani,10,
+Water Bottle,20,
+Coke (200 ml),20,
+Dinner,1930,
+Mini Combo Veg,80,
+Mini Combo Non Veg,90,
+Full Thali Veg,110,
+Full Thali Non Veg,120,
+Curry of the Day Veg,120,
+Curry Of the Day Non Veg,150,
+Tandoori Roti (w/Butter),20,
+Tawa Roti,10,
+Tea,10,
+Coffee,15,
+Nimbu Pani,10,
+Water Bottle,20,
+Coke (200 ml),20,

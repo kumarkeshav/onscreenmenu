@@ -16,8 +16,11 @@
         
             {% for menu in menu %}
                 <tr>
-                    <td>{{ menu[0] }}</td>
-                    <td>{{ menu[1] }}</td>
+                    <td>{{ menu[0] }}
+                        <p style="font-size: 60%;line-height: 0%;">{{ menu[2] }}</p>
+                    </td>
+                    
+                    <td valign="top">{{ menu[1] }}</td>
                 </tr>
                 
             {% endfor %}
