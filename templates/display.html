@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
 {% block body %}
+    <head>
+        {{ meal }}
+    </head>
+    
     <ul>
         {% for menu in menu %}
             <li>{{ menu }}</li>

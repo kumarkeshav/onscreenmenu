@@ -1,9 +1,11 @@
 from flask import Flask, render_template
 app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
 import csv
+from datetime import datetime
 
 #Menu to be displayed
 menu = []
+meal = "Closed"
 
 @app.route("/")
 def hello():
@@ -16,7 +18,12 @@ def display():
     reader = csv.reader(file)
     menu = list(reader)
     file.close()
-    return render_template("display.html", menu=menu)
+    
+    now = datetime.now()
+    if int(now.strftime("%H")) > 1 and int(now.strftime("%H")) < 22:
+        meal = "Breakfast"
+        
+    return render_template("display.html", menu=menu, meal = meal)
 
 @app.route("/configure", methods=["GET"])
 def configure():
