@@ -6,6 +6,7 @@ import datetime
 #Menu to be displayed
 menu = []
 meal = "Closed"
+PATH = 'resources/'
 
 @app.route("/")
 def hello():
@@ -35,18 +36,18 @@ def getTimebasedMenuFile():
         return "snacks.csv"  # /Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/snacks.csv
     if now > dinner_start and now < dinner_end:
         return "dinner.csv"
+    else:
+        return "closed.csv"
 
 @app.route("/display")
 def display():
     fileName = getTimebasedMenuFile()
     fileName = fileName if fileName else "menu.csv"
-    file = open('/Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/' + fileName, "r")
+
+    file = open(PATH + fileName, "r")
     reader = csv.reader(file)
     menu = list(reader)
     file.close()
-
-    # now = datetime.now()
-    # if int(now.strftime("%H")) > 1 and int(now.strftime("%H")) < 22:
 
     meal = fileName.split(".csv")[0].upper()
         
