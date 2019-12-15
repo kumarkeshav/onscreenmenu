@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
 import csv
-from datetime import datetime
+import datetime
 
 #Menu to be displayed
 menu = []
@@ -12,16 +12,43 @@ def hello():
     return "Hello World v2!"
     #return render_template("index.html")
 
+
+def getTimebasedMenuFile():
+    now = datetime.datetime.today()
+    breakfast_start = now.replace(hour=9, minute=00, second=0)
+    breakfast_end = now.replace(hour=12, minute=29, second=59)
+
+    lunch_start = now.replace(hour=12, minute=30, second=0)
+    lunch_end = now.replace(hour=14, minute=59, second=59)
+
+    snacks_start = now.replace(hour=15, minute=00, second=0)
+    snacks_end = now.replace(hour=19, minute=29, second=59)
+
+    dinner_start = now.replace(hour=19, minute=30, second=0)
+    dinner_end = now.replace(hour=22, minute=59, second=59)
+
+    if now > breakfast_start and now < breakfast_end:
+        return "breakfast.csv"
+    if now > lunch_start and now < lunch_end:
+        return "lunch.csv"
+    if now > snacks_start and now < snacks_end:
+        return "snacks.csv"  # /Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/snacks.csv
+    if now > dinner_start and now < dinner_end:
+        return "dinner.csv"
+
 @app.route("/display")
 def display():
-    file = open("menu.csv", "r")
+    fileName = getTimebasedMenuFile()
+    fileName = fileName if fileName else "menu.csv"
+    file = open('/Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/' + fileName, "r")
     reader = csv.reader(file)
     menu = list(reader)
     file.close()
-    
-    now = datetime.now()
-    if int(now.strftime("%H")) > 1 and int(now.strftime("%H")) < 22:
-        meal = "Breakfast"
+
+    # now = datetime.now()
+    # if int(now.strftime("%H")) > 1 and int(now.strftime("%H")) < 22:
+
+    meal = fileName.split(".csv")[0].upper()
         
     return render_template("display.html", menu=menu, meal = meal)
 
