@@ -7,6 +7,9 @@ import datetime
 menu = []
 meal = "Closed"
 PATH = 'resources/'
+cod = 0
+codv = "PBM"
+codnv = "CTM"
 
 @app.route("/")
 def hello():
@@ -29,14 +32,19 @@ def getTimebasedMenuFile():
     dinner_end = now.replace(hour=22, minute=59, second=59)
 
     if now > breakfast_start and now < breakfast_end:
+        cod = 0
         return "breakfast.csv"
     if now > lunch_start and now < lunch_end:
+        cod = 1
         return "lunch.csv"
     if now > snacks_start and now < snacks_end:
+        cod = 0
         return "snacks.csv"  # /Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/snacks.csv
     if now > dinner_start and now < dinner_end:
+        cod = 1
         return "dinner.csv"
     else:
+        cod = 0
         return "closed.csv"
 
 @app.route("/display")
@@ -48,10 +56,10 @@ def display():
     reader = csv.reader(file)
     menu = list(reader)
     file.close()
-
+    #cod = 1
     meal = fileName.split(".csv")[0].upper()
         
-    return render_template("display.html", menu=menu, meal = meal)
+    return render_template("display.html", menu=menu, meal = meal, cod = cod, codv = codv, codnv = codnv)
 
 @app.route("/configure", methods=["GET"])
 def configure():

@@ -1,12 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
-    <h1 style="color:black;text-align:center">
+    <h3 style="color:black;text-align:center">
         Hello, Everyone!
-    </h1>
+    </h3>
     <h2 style="color:rgb(57, 55, 214);text-align:center">
         Live Menu: {{ meal }}
+        COD = {{ cod }}
     </h2>
+    {% block content %}
+        {% if cod == 1 %}
+            <h2 style="color:black;text-align:center">
+                Curry of the Day (Veg): {{codv}}
+            </h2>
+            <h2 style="color:black;text-align:center">
+                Curry of the Day (Non-Veg): {{codnv}}
+            </h2>
+        {% endif %}
+    {% endblock content %}
     
     <table align="center">
         <tr style="text-align: left;">
@@ -26,5 +37,7 @@
             {% endfor %}
         
     </table>
+
+    
     
 {% endblock %}
