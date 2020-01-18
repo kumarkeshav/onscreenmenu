@@ -1,20 +1,15 @@
 from flask import Flask, render_template, request
-app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
+app = Flask(__name__, template_folder="templates", static_folder="static")
 import csv
 import datetime
 
 #Menu to be displayed
-global menu
 menu = []
-global meal 
 meal = "Closed"
 PATH = 'resources/'
-global cod
 cod = 0
-global codv
-codv = "PBM"
-global codnv
-codnv = "CTM"
+codv = None
+codnv = None
 
 @app.route("/")
 def hello():
@@ -63,24 +58,29 @@ def getMenuandMeal():
     file.close()
     #cod = 1
     meal = fileName.split(".csv")[0].upper()
-    print (meal)
     return menu, meal, cod
+
+def updateCOD(codv2, codnv2):
+    codv = codv2
+    codnv = codnv2
+    return codv, codnv
 
 @app.route("/display")
 def display():
-    print ('Hello')
     menu, meal, cod = getMenuandMeal()
-    print (menu)
     return render_template("display.html", menu=menu, meal=meal, cod=cod, codv=codv, codnv=codnv)
 
 @app.route("/configure", methods=["POST"])
 def configure():
-    #menu, meal, cod = getMenuandMeal()
-    codv1 = request.form.get("codv1")
-    #codnv1 = request.form.get("codnv")
+    menu, meal, cod = getMenuandMeal()
+    global codv
+    codv = request.form.get("codv")
+    global codnv
+    codnv = request.form.get("codnv")
+    #codv, codnv = updateCOD(codv1, codnv1)
     #return codv
-    #return render_template("display.html", menu=menu, meal=meal, cod=cod, codv=codv, codnv=codnv)
-    return render_template("nav.html", codv1=codv1)
+    return render_template("display.html", menu=menu, meal=meal, cod=cod, codv=codv, codnv=codnv)
+    #return render_template("nav.html", name=name, name1=name1)
     
 @app.route("/save_config")
 def save_config():
