@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+Configure: Curries of the Day
+{% endblock %}
+
+{%block body%}
+    <form action="{{ url_for('configure') }}" method="post">
+        <input type="text" codv1="codv1" placeholder="Curry of the Day (Veg)">
+        <!-- <input type="text" codnv="codnv" placeholder="Curry of the Day (Non-Veg)"> -->
+        <button>Submit</button>
+    </form>
+{% endblock %}
