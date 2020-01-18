@@ -1,14 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__, instance_relative_config=False, template_folder="templates", static_folder="static")
 import csv
 import datetime
 
 #Menu to be displayed
+global menu
 menu = []
+global meal 
 meal = "Closed"
 PATH = 'resources/'
+global cod
 cod = 0
+global codv
 codv = "PBM"
+global codnv
 codnv = "CTM"
 
 @app.route("/")
@@ -18,6 +23,7 @@ def hello():
 
 
 def getTimebasedMenuFile():
+    cod = 0
     now = datetime.datetime.today()
     breakfast_start = now.replace(hour=9, minute=00, second=0)
     breakfast_end = now.replace(hour=12, minute=29, second=59)
@@ -33,23 +39,22 @@ def getTimebasedMenuFile():
 
     if now > breakfast_start and now < breakfast_end:
         cod = 0
-        return "breakfast.csv"
+        return "breakfast.csv", cod
     if now > lunch_start and now < lunch_end:
         cod = 1
-        return "lunch.csv"
+        return "lunch.csv", cod
     if now > snacks_start and now < snacks_end:
         cod = 0
-        return "snacks.csv"  # /Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/snacks.csv
+        return "snacks.csv", cod  # /Users/sanyamgupta/PycharmProjects/onscreenmenu/resources/snacks.csv
     if now > dinner_start and now < dinner_end:
         cod = 1
-        return "dinner.csv"
+        return "dinner.csv", cod
     else:
         cod = 0
-        return "closed.csv"
+        return "closed.csv", cod
 
-@app.route("/display")
-def display():
-    fileName = getTimebasedMenuFile()
+def getMenuandMeal():
+    fileName, cod = getTimebasedMenuFile()
     fileName = fileName if fileName else "menu.csv"
 
     file = open(PATH + fileName, "r")
@@ -58,16 +63,28 @@ def display():
     file.close()
     #cod = 1
     meal = fileName.split(".csv")[0].upper()
-        
-    return render_template("display.html", menu=menu, meal = meal, cod = cod, codv = codv, codnv = codnv)
+    print (meal)
+    return menu, meal, cod
 
-@app.route("/configure", methods=["GET"])
+@app.route("/display")
+def display():
+    print ('Hello')
+    menu, meal, cod = getMenuandMeal()
+    print (menu)
+    return render_template("display.html", menu=menu, meal=meal, cod=cod, codv=codv, codnv=codnv)
+
+@app.route("/configure", methods=["POST"])
 def configure():
-    return "Hello World v3!"
-    #render_template("configure.html")
+    #menu, meal, cod = getMenuandMeal()
+    codv1 = request.form.get("codv1")
+    #codnv1 = request.form.get("codnv")
+    #return codv
+    #return render_template("display.html", menu=menu, meal=meal, cod=cod, codv=codv, codnv=codnv)
+    return render_template("nav.html", codv1=codv1)
     
-@app.route("/save_config", methods=["POST"])
+@app.route("/save_config")
 def save_config():
-    render_template("display.html")
+    return render_template("configure.html")
+    #return "Hello World v3!"
 
 app.run(host = '0.0.0.0', port = '5000', debug = 'True')
